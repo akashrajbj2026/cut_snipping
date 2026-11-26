@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: cutaway
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # sync:false = Render asks you to paste the value in the dashboard.
+      # Paste ONLY the key itself: no quotes, no spaces, no "NAME=" prefix.
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b

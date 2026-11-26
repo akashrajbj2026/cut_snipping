@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0b10">
+  <title>Cut Away — Find the signal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="workstation">
+    <aside class="rail">
+      <div class="brand"><div class="brand-mark"><i></i><i></i></div><span>CUT<br>AWAY</span></div>
+      <div class="rail-rule"></div>
+      <nav class="rail-nav" aria-label="Workflow">
+        <button class="rail-item is-active" type="button"><span class="rail-icon">01</span><span>Source</span></button>
+        <button class="rail-item" type="button"><span class="rail-icon">02</span><span>Intent</span></button>
+        <button class="rail-item" type="button"><span class="rail-icon">03</span><span>Cut</span></button>
+      </nav>
+      <div class="rail-bottom"><span class="live-dot"></span><span>LOCAL ENGINE</span><span class="version">v3.0</span></div>
+    </aside>
+
+    <section class="studio">
+      <header class="topbar">
+        <div><p class="eyebrow">AI ROUGH-CUT WORKSTATION <span class="live-dot"></span></p><h1>Find the signal.</h1></div>
+        <div class="topbar-meta"><span class="mono">SESSION / <b id="session-state">READY</b></span><span class="topbar-line"></span><span class="mono">24 FPS</span></div>
+      </header>
+
+      <div class="status-banner hidden" id="status-banner" role="alert"></div>
+
+      <section class="workspace">
+        <div class="monitor-column">
+          <div class="monitor-head"><div><span class="section-kicker">SOURCE MONITOR</span><span class="monitor-title" id="monitor-title">Waiting for a source</span></div><span class="timecode mono" id="timecode">00:00:00:00</span></div>
+          <div class="monitor">
+            <div class="monitor-grid"></div><div class="monitor-noise"></div>
+            <div class="monitor-copy"><span class="signal-pill"><span class="live-dot"></span> AWAITING MEDIA</span><strong>Bring in a video.<br><em>We’ll find the good parts.</em></strong><span class="monitor-hint">MP4 · MOV · MKV · WEBM</span></div>
+            <div class="monitor-corners"><span>REC</span><span>01 / 01</span></div>
+          </div>
+          <div class="scrub"><span class="mono">00:00</span><div class="scrub-track"><span class="scrub-fill"></span><span class="scrub-knob"></span></div><span class="mono">--:--</span></div>
+        </div>
+
+        <div class="analysis-column">
+          <div class="analysis-card">
+            <div class="card-top"><span class="section-kicker">ANALYSIS CORE</span><span class="core-status" id="core-status">STANDBY</span></div>
+            <div class="core-visual"><div class="core-orbit orbit-one"></div><div class="core-orbit orbit-two"></div><div class="core-orbit orbit-three"></div><div class="core-sphere"><span></span></div><div class="core-label mono">CUT<br>ENGINE</div></div>
+            <div class="core-readout"><span class="mono">SCANNING / <b id="scan-readout">0%</b></span><span class="mono">RANGES / <b id="range-readout">0</b></span></div>
+          </div>
+          <div class="mini-stats"><div><span class="stat-label">SOURCE</span><b id="source-stat">—</b></div><div><span class="stat-label">TARGET</span><b id="target-stat">—</b></div><div><span class="stat-label">ENGINE</span><b>GEMINI + GROQ</b></div></div>
+        </div>
+      </section>
+
+      <section class="control-panel" id="screen-upload">
+        <div class="control-heading"><div><span class="section-kicker">01 / IMPORT SOURCE</span><h2>Start with the full story.</h2><p>Drop a video here or bring one in by URL. Cut Away will inspect every frame before it chooses a range.</p></div><span class="heading-mark">↘</span></div>
+        <div class="input-row"><div class="source-input">
+          <div class="tabs" role="tablist"><button class="tab active" id="tab-upload" type="button" role="tab" aria-selected="true">FILE</button><button class="tab" id="tab-link" type="button" role="tab" aria-selected="false">LINK</button></div>
+          <div class="tab-panel" id="panel-upload"><label class="dropzone" for="video-input" id="dropzone"><span class="drop-icon">↥</span><span class="dropzone-text">Choose a source or drag it here</span><span class="dropzone-hint">The longer the video, the more we can save you.</span></label><input type="file" id="video-input" accept="video/*" hidden><div class="progress hidden" id="upload-progress"><div class="progress-track"><div class="progress-fill" id="upload-progress-fill"></div></div><span class="progress-text mono" id="upload-progress-text">0%</span></div></div>
+          <div class="tab-panel hidden" id="panel-link"><input type="url" class="link-input" id="video-link" placeholder="https://… paste a video link"></div>
+        </div><button class="primary-btn" id="btn-complete-upload" type="button">Import source <span>→</span></button></div>
+      </section>
+
+      <section class="control-panel hidden" id="screen-interest">
+        <div class="control-heading"><div><span class="section-kicker">02 / SET YOUR INTENT</span><h2>Tell us what to keep.</h2><p>Name a topic, moment, person, or thread. The engine will scan the whole source and merge every matching range.</p></div><span class="heading-mark">✦</span></div>
+        <label class="field-label" for="interest-input">CUT BRIEF</label><textarea class="interest-box" id="interest-input" placeholder="e.g. the part where they explain the pricing model"></textarea>
+        <div class="prompt-chips"><button type="button" data-prompt="the clearest explanation of the main idea">Main idea</button><button type="button" data-prompt="every practical tip and takeaway">Practical tips</button><button type="button" data-prompt="the funniest and most unexpected moments">Best moments</button></div>
+        <div class="action-row"><button class="secondary-btn" id="btn-change-video" type="button">← Swap source</button><button class="primary-btn" id="btn-generate" type="button">Analyze & cut <span>→</span></button></div>
+      </section>
+
+      <section class="control-panel hidden" id="screen-result">
+        <div class="control-heading"><div><span class="section-kicker">03 / YOUR RECOVERED CUT</span><h2>Your cut is ready to screen.</h2><p class="quote-badge" id="quote-text"></p></div><span class="heading-mark lime">✓</span></div>
+        <div class="result-box" id="result-box"><video class="result-video hidden" id="result-video" controls></video><div class="result-placeholder" id="result-placeholder"><span class="result-pulse"></span><span>Rendering your preview…</span></div></div>
+        <div class="result-meta"><span class="mono" id="duration-readout"></span><span class="mono"><b id="result-range-count">—</b> MATCHED RANGES</span></div>
+        <div class="action-row"><button class="secondary-btn" id="btn-start-over" type="button">← Start another cut</button><button class="primary-btn" id="btn-download" type="button">Download cut <span>↓</span></button></div>
+      </section>
+
+      <section class="timeline-panel"><div class="timeline-label"><span class="section-kicker">CUT MAP</span><span class="mono" id="timeline-state">NO MEDIA LOADED</span></div><div class="filmstrip" id="filmstrip"><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span><span class="film-cell"></span></div><div class="timeline-footer"><span class="mono">00:00:00</span><span class="timeline-track"><i id="timeline-progress"></i></span><span class="mono" id="timeline-duration">--:--:--</span></div></section>
+    </section>
+  </main>
+  <script src="script.js?v=5"></script>
+</body>
+</html>

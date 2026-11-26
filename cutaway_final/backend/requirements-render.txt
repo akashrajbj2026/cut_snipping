@@ -1,0 +1,8 @@
+# Slim set for Render's free 512 MB instance.
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+requests
+google-genai
+yt-dlp

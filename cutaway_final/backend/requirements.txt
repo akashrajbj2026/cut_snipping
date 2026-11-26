@@ -1,0 +1,16 @@
+# --- core server (everything needed to run the app) ---
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+requests
+
+# --- providers ---
+google-genai          # Gemini: native full-video input (free tier)
+# Groq is called over plain REST via `requests` - no extra SDK needed.
+
+# --- video handling ---
+yt-dlp                # paste-a-link import
+
+# Optional extras live in requirements-optional.txt (heavy installs):
+#   pip install -r requirements-optional.txt

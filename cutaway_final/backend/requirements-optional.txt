@@ -1,0 +1,3 @@
+# Optional - the app works without these.
+faster-whisper        # fully offline transcription (no Groq key needed)
+scenedetect[opencv]   # snaps cut points to real shot changes (slower on long videos)

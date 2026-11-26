@@ -1,0 +1,13 @@
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/jobs/
+.env
+**/.env
+.git
+*.zip
+*.bat
+backend/.env.example
+**/.env.example
+README.md
+plan.md
